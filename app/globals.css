@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 210 100% 35%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 80% 70%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --accent: 35 100% 60%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 100% 35%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 80% 70%;
+    --secondary-foreground: 210 40% 98%;
+    --accent: 35 100% 60%;
+    --accent-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.hexagon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 15px;
+}
+
+/* Updated hexagon shape to match the logo */
+.hexagon {
+  position: relative;
+  width: 100%;
+  padding-bottom: 86.6%;
+  /* Match the logo hexagon shape - slightly flatter on top/bottom */
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  transition: transform 0.3s ease;
+}
+
+.hexagon:hover {
+  transform: scale(1.05);
+}
+
+.hexagon-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Playful menu styles - adjusted for single line */
+.nav-item {
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0.75rem; /* Reduced horizontal padding */
+  margin: 0 0.125rem; /* Reduced margin */
+  white-space: nowrap; /* Ensure no wrapping */
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover::before {
+  background-color: theme("colors.accent.DEFAULT");
+}
+
+.nav-item.active::before {
+  background-color: theme("colors.primary.DEFAULT");
+}
+
+.nav-item:hover {
+  transform: translateY(-2px);
+}
+
+/* Hexagon menu indicator */
+.menu-hexagon-indicator {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: theme("colors.primary.DEFAULT");
+}
+
+/* Hexagon pattern background */
+.hexagon-pattern {
+  background-image: url("/images/hexagon-pattern.png");
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+/* Modern feature cards */
+.modern-feature-card {
+  transition: transform 0.3s ease;
+}
+
+.modern-feature-card:hover {
+  transform: translateY(-5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modern-feature-card:hover {
+    transform: none;
+  }
+
+  .modern-feature-card .group-hover\:w-full {
+    transition: none;
+  }
+}
